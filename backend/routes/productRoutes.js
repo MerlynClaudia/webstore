@@ -1,16 +1,8 @@
 import express from "express";
-import asyncHandler from '../middleware/asyncHandler.js';
-import Product from '../models/productModel.js';
-
 const router = express.Router();
+import { getProducts, getProductById } from '../controllers/productController.js';
 
-router.get('/', asyncHandler(async(req, res) => {
-    res.json(products);
-}));
-
-router.get('/:id', asyncHandler(async(req, res) => {
-    const product = products.find((p) => p._id === req.params.id);
-    res.json(product);
-}));
+router.route('/').get(getProducts);
+router.route('/:id').get(getProductById);
 
 export default router;
